@@ -31,53 +31,25 @@ public class JSONReader implements Reader {
         FileReader fr;
         List<CreditCardEntry> result = new ArrayList<>();
         ObjectMapper mapper = new ObjectMapper();
-        List<String> cardDetails;
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd");
 
         try {
             fr = new FileReader(file);
-            JSONParser parser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) parser.parse(fr);
-            System.out.println(jsonObject.get("cards"));
+        JSONParser parser = new JSONParser();
+        JSONArray cards = (JSONArray) parser.parse(fr);  // Directly parse as JSONArray
 
-            JSONArray cards = (JSONArray) jsonObject.get("cards");
+        for (Object cardObj : cards) {
+            JSONObject card = (JSONObject) cardObj;
+            List<String> cardDetails = new ArrayList<>();
 
-            for (int i = 0; i < cards.size(); i++) {
-                System.out.println(cards.get(i));
-                cardDetails = new ArrayList<>();
-                String entries = cards.get(i).toString();
-                String[] eachCardEntry = entries.split(",");
-                for (String each : eachCardEntry) {
-                    String[] split1 = each.split(":");
-                    String replace1 = split1[1].replaceAll("}", "");
-                    String replace2 = replace1.replaceAll("\\\\", "");
-                    cardDetails.add(replace2);
-                }
+            // Extract card details
+            String cardNumber = (String) card.get("cardNumber");
+            String expirationDate = (String) card.get("expirationDate");
+            String cardHolderName = (String) card.get("cardHolderName");
 
-                for (String string : cardDetails) {
-                    System.out.println(string);
-                }
-
-                String a = "";
-                if (cardDetails.size() < 3) {
-                    a = "";
-                    String name = cardDetails.get(0).replaceAll("\"", "");
-                    String b = cardDetails.get(1).replaceAll("\"", "");
-                    Date eDate = sdf.parse(String.valueOf(b));
-                    result.add(new CreditCardEntry(a, eDate, name));
-                } else {
-                    a = cardDetails.get(1).replaceAll("\"", "");
-                    String b = cardDetails.get(2).replaceAll("\"", "");
-                    Date eDate = sdf.parse(String.valueOf(b));
-                    String name = cardDetails.get(0).replaceAll("\"", "");
-                    System.out.println(name + " " + a.length() + " ------- " + a + " " + b);
-
-                    // Long cNumber = Long.parseLong(a);
-                    String cNumber = a;
-
-                    result.add(new CreditCardEntry(cNumber, eDate, name));
-                }
-            }
+            Date eDate = sdf.parse(expirationDate);
+            result.add(new CreditCardEntry(cardNumber, eDate, cardHolderName));
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
