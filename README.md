@@ -1,6 +1,6 @@
 # Individual Project CMPE202 - Harika
 
-### GitHub Classroom: Individual-project-cmpe202-Harika
+### GitHub Classroom: individual-project-harikakolipaka22k
 #### Student ID: 017422912
 
 ## Overview
