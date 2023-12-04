@@ -48,7 +48,8 @@ This pattern creates a chain of receiver objects for a request. This pattern dec
     - Can lead to a proliferation of strategy classes.
 
 ## Class Diagram
-![Class Diagram]()
+![Class Diagram](uml_diagram.png)
+![Class Diagram 2](uml1.jpeg)
 
 ## Usage Instructions
 ### Running the Project
