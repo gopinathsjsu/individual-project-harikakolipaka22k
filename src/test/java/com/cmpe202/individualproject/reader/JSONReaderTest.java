@@ -14,7 +14,7 @@ class JSONReaderTest {
     @Test
     void validateReadJson() {
         // Test case for validating JSON file reading
-        String filePath = "src/test/java/sampleFiles/input_file.json";
+        String filePath = "src/test/java/com/sampleFiles/input_file.json";
 
         JSONReader jsonReaderObj = new JSONReader(new File(filePath));
         List<CreditCardEntry> result = jsonReaderObj.readFile(filePath);

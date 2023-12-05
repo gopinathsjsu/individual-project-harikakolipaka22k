@@ -14,7 +14,7 @@ class XMLReaderTest {
     void validateReadXml() {
         // Test case for validating XML file reading
         XMLReader xmlReaderObj = new XMLReader();
-        String filePath = "src/test/java/sampleFiles/input_file.xml";
+        String filePath = "src/test/java/com/sampleFiles/input_file.xml";
         List<CreditCardEntry> result = xmlReaderObj.readFile(filePath);
 
         // Get the name and card number from the first entry in the result (index 0)

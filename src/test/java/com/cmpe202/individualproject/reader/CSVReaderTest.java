@@ -14,7 +14,7 @@ class CSVReaderTest {
     @Test
     void validateReadCsv() {
         // Test case for validating CSV file reading
-        String filePath = "src/test/java/sampleFiles/input_file.csv";
+        String filePath = "src/test/java/com/sampleFiles/input_file.csv";
 
         CSVReader csvReaderObj = new CSVReader(new File(filePath));
         List<CreditCardEntry> result = csvReaderObj.readFile(filePath);
